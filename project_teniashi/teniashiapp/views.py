@@ -21,9 +21,3 @@ class createproject(CreateView):
 
 class detailproject(DetailView):
     template_name = 'teniashiapp/detailproject.html'
-
-class ():
-    template_name = 'teniashiapp/'
-
-class ():
-    template_name = 'teniashiapp/'
