@@ -22,6 +22,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
 # staticフォルダへの絶対パスを定義
 STATIC_DIR = os.path.join(BASE_DIR,"static")
 
+# staticフォルダの場所(デプロイ後)
+# STATICFILES_DIR = [os.path.join(BASE_DIR, 'static/')]
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -66,7 +69,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.templlate.context_processors.request',
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],

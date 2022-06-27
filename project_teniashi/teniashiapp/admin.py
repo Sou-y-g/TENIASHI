@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from django.contrib import admin
+from teniashiapp.models import project
+
+admin.site.register(project)

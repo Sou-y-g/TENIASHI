@@ -1,6 +1,34 @@
 {% extends 'base.html' %}
+
 {% block title %}TENIASHI{% endblock  %}
 
 {% block contents %}
-    <h1>Hello World</h1>
-{% endblock  %}
+    
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'teniashiapp/css/hyousi.css' %}">
+    {% comment %} <li style="background-image: url( '{% static 'teniashiapp/images/yama.jpg' %}' );"> {% endcomment %}
+    {% comment %} <img src="{% static 'teniashiapp/images/yama.jpg'%}"  width="" height="" > {% endcomment %}
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">TENIASHI 徳島予選</h5>
+              <p class="card-text">キオラブロズトティで予選です<br>
+            開始は6/25（土曜日）〜</p>
+              <a href="{% url 'yosen' %}" class="btn btn-primary">予選</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">TENIASHI本戦</h5>
+              <p class="card-text">CommingSoon!!</p>
+              <a href="{% url 'yosen' %}" class="btn btn-primary">本戦</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    {% endblock  %}

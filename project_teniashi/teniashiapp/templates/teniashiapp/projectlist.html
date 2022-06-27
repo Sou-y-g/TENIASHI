@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}課題一覧{% endblock  %}
+
+{% block contents %}
+    
+    {% load static %}
+
+    {% for project in project_list %}
+    <a>{{ project.project_num }}</a>
+    <p>{{ project.wall_name }}</p>
+    <p>{{ project.setter_name }}</p>
+    <img src="{{ project.image.url }}"></img>
+    {% endfor %}
+    
+{% endblock %}

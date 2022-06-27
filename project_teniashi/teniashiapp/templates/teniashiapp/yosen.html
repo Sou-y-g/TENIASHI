@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}TENIASHI 徳島予選{% endblock  %}
+
+{% block contents %}
+    {% load static %}
+    <h1>TENIASHI予選</h1>
+    <p>6/25（土曜日）〜 7/4（月曜日）</p>
+
+    <a href=" {% url 'rule' %} ">ルール</a>
+    <a href=" {% url 'projectlist' %} ">課題一覧</a>
+    {% comment %} <a href=" {% url 'result' %} ">リザルト</a> {% endcomment %}
+
+{% endblock %}
