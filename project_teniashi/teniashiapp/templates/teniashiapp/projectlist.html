@@ -10,7 +10,7 @@
     <a>{{ project.project_num }}</a>
     <p>{{ project.wall_name }}</p>
     <p>{{ project.setter_name }}</p>
-    <img src="{{ project.image.url }}"></img>
+    {% comment %} <img src="{{ project.image.url }}" width="100" height="100"> {% endcomment %}
     {% endfor %}
-    
+
 {% endblock %}
