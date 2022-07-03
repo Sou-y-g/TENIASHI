@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}課題詳細{% endblock  %}
+
+{% block contents %}
+    {% csrf_token %}
+    {% load static %}
+
+    <p>{{ project.project_num }}</p>
+    <p>{{ project.wall_name }}</p>
+    <p>{{ project.setter_name }}</p>
+    <img src="{{ project.image.url }}" alt="" width="100%" height="600">
+
+    <a href="{% url 'list' %}">課題一覧へ</a>
+    <a href="{% url 'update' project.id %}">編集</a>
+    <a href="{% url 'delete' project.id %}">削除</a>
+    #完登したかどうかをここに書く
+    
+    
+{% endblock %}

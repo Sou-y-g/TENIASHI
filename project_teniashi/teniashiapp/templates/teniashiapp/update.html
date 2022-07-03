@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}課題作成{% endblock  %}
+{% block title %}課題編集{% endblock  %}
 
 {% block contents %}
 
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">作成する</button>
+    <button type="submit">保存</button>
+    <button><a href="{% url 'detail' project.id %}">キャンセル</a></button>
 </form>
 
 {% endblock %}

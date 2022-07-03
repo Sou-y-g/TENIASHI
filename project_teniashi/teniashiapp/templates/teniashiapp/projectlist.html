@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}課題一覧{% endblock  %}
+{% block title %}{% endblock  %}
 
 {% block contents %}
     {% csrf_token %}
     {% load static %}
-
     <table border="2">
         <tr>
           <th>課題No.</th>
@@ -14,7 +13,7 @@
         </tr>
         {% for project in project_list %}
             <tr>
-                <td>{{ project.project_num }}</td>
+                <td><a href="{% url 'detail' project.pk %}">{{ project.project_num }}</a></td>
                 <td>{{ project.wall_name }}</td>
                 <td>{{ project.setter_name }}</td>
             </tr>

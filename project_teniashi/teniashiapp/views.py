@@ -1,6 +1,5 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView, DeleteView, ListView, DetailView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import TemplateView, CreateView, DeleteView, ListView, DetailView, UpdateView
 
 from .forms import ProjectFrom
 from .models import project
@@ -20,14 +19,15 @@ class rule(TemplateView):
 class projectlist(ListView):
     template_name = 'teniashiapp/projectlist.html'
     model = project
-    context_object_name = 'project_list'
 
 # class result():
 #     def kekak(self):
 #         print("a")
 
-class delete(DeleteView):
+class DeleteProject(DeleteView):
     template_name = 'teniashiapp/delete.html'
+    model = project
+    success_url = reverse_lazy('list')
 
 class createproject(CreateView):
     template_name = 'teniashiapp/createproject.html'
@@ -40,11 +40,16 @@ class createproject(CreateView):
         form.fields['project_num'].label = '課題No.'
         form.fields['wall_name'].label = 'WallName'
         form.fields['setter_name'].label = 'セッター名'
-        form.fields['project_num'].required = True
-        form.fields['wall_name'].required = True
-        form.fields['setter_name'].required = True
-        form.fields['image'].required = True
         return form
 
 class detailproject(DetailView):
     template_name = 'teniashiapp/detailproject.html'
+    model = project
+
+class Update_project(UpdateView):
+    template_name = 'teniashiapp/update.html'
+    model = project
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('detail', kwargs={'pk':self.object.id})
