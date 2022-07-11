@@ -1,26 +1,31 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate
-from django.views.generic import CreateView
-from . forms import UserCreateForm
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, CreateView, View
 
-#アカウント作成
-class Create_account(CreateView):
-    def post(self, request, *args, **kwargs):
-        form = UserCreateForm(data = request.POST)
-        if form.is_valid():
-            form.save()
-            #フォームからusernameを読み取る
-            username = form.cleaned_data.get('username')
-            #フォームからpassword1を読み取る
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('/')
-        return render(request, 'create.html', {'form': form,})
+from django.contrib.auth import (
+    get_user_model, logout as auth_logout
+)
+from django.contrib.auth.forms import UserCreationForm
 
-    def get(self, request, *args, **kawrgs):
-        form = UserCreateForm(request.POST)
-        return render(request, 'create.html', {'form': form,})
+User = get_user_model()
 
-create_account = Create_account.as_view()
+class Top(TemplateView):
+    template_name = 'top.html'
+
+class ProfileView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        return render(self.request,'registration/profile.html')
+
+class SignUpView(CreateView):
+    from_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'
+
+class DeleteView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+        user = User.objects.get(username=self.request.user.username)
+        user.is_active = False
+        user.save()
+        auth_logout(self.request)
+        return render(self.request, 'registration/delete_complete.html')

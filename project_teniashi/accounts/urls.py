@@ -1,8 +1,12 @@
-from django.urls import path, include
-from django.views.generic.base import TemplateView
-from django.contrib.auth.decorators import login_required
+from django.urls import path
+from django.views.generic import TemplateView
+from . import views
+
+app_name = 'accounts'
 
 urlpatterns = [
-    path('', include('django.contrib.auth.urls')),
-    path('profile/', login_required(TemplateView.as_view(template_name='accounts/profil.html'))),
+    path('profile/', views.ProfileView.as_view(), name='profile'),
+    path('signup/', views.SignUpView.as_view(), name='signup'),
+    path('delete_confirm', TemplateView.as_view(template_name='registration/delete_confirm.thml')),
+    path('delete_complete', views.DeleteView.as_view(), name='delete-complete'),
 ]

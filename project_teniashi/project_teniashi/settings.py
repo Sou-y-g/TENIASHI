@@ -140,3 +140,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #passwordリセット時のメールをコンソールで確認するため
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = 'login'            # ログイン時
+LOGIN_REDIRECT_URL = 'index'   # ログイン後
+LOGOUT_REDIRECT_URL = 'index'  # ログアウト後
+AUTH_USER_MODEL = 'accounts.User'

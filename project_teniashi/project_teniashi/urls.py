@@ -22,7 +22,8 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('teniashiapp.urls')),
-    path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),   #会員登録用に作ったacountsアプリ
+    path('accounts/', include('django.contrib.auth.urls')),  #django提供のログイン、ログアウト機能
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}ユーザー登録{% endblock  %}
+
+{% block content %}
+
+    <h3>ユーザー作成</h3>
+    <tabele>
+        <tr><td>ClimberName</td><td>{{form.cleaned_data.username}}</td>
+        <td>Password</td><td>*******</td></tr>
+    </tabele>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        {{field.as_hidden}}
+        {% endfor %}
+        <button type="submit">登録</button>
+        <button><a href="{% url 'login' %}"></a>キャンセル</button>
+    </form>
+
+
+{% endblock  %}
