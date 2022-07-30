@@ -1,31 +1,41 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, CreateView, View
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
+from django.views.generic import CreateView, ListView, View
+from .models import User
+from accounts.forms import UserCreateForm, UserLoginForm, UserPasswordChange
 
 from django.contrib.auth import (
     get_user_model, logout as auth_logout
 )
-from django.contrib.auth.forms import UserCreationForm
 
 User = get_user_model()
 
-class Top(TemplateView):
-    template_name = 'top.html'
+class UserTopView(ListView):
+    template_name = 'registration/user_top.html'
+    model = User
 
-class ProfileView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        return render(self.request,'registration/profile.html')
+class UserCreate(CreateView):
+    model = User
+    form_class = UserCreateForm
+    template_name = 'registration/create.html'
+    success_url = reverse_lazy('index')    
 
-class SignUpView(CreateView):
-    from_class = UserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'registration/signup.html'
+class UserLogin(LoginView):
+    template_name = 'registration/login.html'
+    authentication_form = UserLoginForm
 
-class DeleteView(LoginRequiredMixin, View):
-    def get(self, *args, **kwargs):
-        user = User.objects.get(username=self.request.user.username)
-        user.is_active = False
-        user.save()
-        auth_logout(self.request)
-        return render(self.request, 'registration/delete_complete.html')
+    # def post(self, request, *args, **kwargs):
+
+class UserLogout(LogoutView):
+    pass
+
+class MyPasswordChange(PasswordChangeView):
+    form_class =  UserPasswordChange #あえてUserPasswordChangeにする必要はない、importが面倒だっただけ
+    success_url = reverse_lazy('registration/passwordchangedone.html')
+    template_name = 'registration/passwordchange.html'
+
+class UserPasswordChangeDone(PasswordChangeDoneView):
+    template_name = 'registration/passwordchangedone.html'
+

@@ -13,5 +13,4 @@ urlpatterns = [
     path('yosen/<int:pk>/projectdetail', views.detailproject.as_view(), name='detail'),
     path('yosen/<int:pk>/delete', views.DeleteProject.as_view(), name='delete'),
     path('yosen/<int:pk>/update', views.Update_project.as_view(), name='update'),
-
 ]

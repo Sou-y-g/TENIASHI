@@ -1,0 +1,8 @@
+.topimage {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-image: url("/static/img/index.jpg");
+    height: 700px;
+    background-size: cover;
+    background-position: 50% 50%;
+}

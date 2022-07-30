@@ -1,0 +1,86 @@
+body, html{
+    background-repeat: no-repeat;
+    background-image: url("/static/img/login.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-position: 50% 70%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.main {
+    margin-top: 50px;
+    padding-bottom: 50px;
+}
+
+.card-wapper {
+    padding: 80px 0;
+}
+
+.card-inner {
+    width: 90%;
+    max-width: 350px;
+    margin: auto;
+}
+
+.card-floatingBox{
+    display: flex; /*縦に並んだアイテムを並列に置き換える*/
+    justify-content: center; /*左右中央*/
+    align-items: center; /*上下中央*/
+}
+
+.card {
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #eee;
+    width: 100%;
+}
+
+.card-label {
+    margin: 5px;
+}
+
+.h2 {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.btn-login {
+    margin: 20px;
+}
+
+.btn-primary {
+    width: 100%;
+    height: 50px;
+    background-color: #426d9d;
+    border: none;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.btn-create {
+    margin: 5px;
+    text-align: center;
+}
+
+.new-create {
+    color: #426d9d;
+}
+
+@media screen and (max-width: 500px){
+body {
+    min-width: 375px;
+    width: 100%;
+}
+}
+@media screen and (max-width: 500px){
+body {
+    font-size: 1.4rem;
+}
+}

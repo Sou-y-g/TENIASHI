@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block contents %}
+<p><a href="{% url 'accounts:create' %}">ユーザー作成</a></p><hr>
+{% for user in user_list %}
+    <p>ユーザー名: {{ user.username }}</p><hr>
+{% endfor %}
+{% endblock %}

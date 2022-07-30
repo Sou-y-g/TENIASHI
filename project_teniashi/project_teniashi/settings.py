@@ -19,11 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # tepmpatesフォルダへの絶対パスを定義
 TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
 
-# staticフォルダへの絶対パスを定義
-STATIC_DIR = os.path.join(BASE_DIR,"static")
-
 # staticフォルダの場所(デプロイ後)
-# STATICFILES_DIR = [os.path.join(BASE_DIR, 'static/')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -47,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'teniashiapp',
-    'accounts'
+    'accounts',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

@@ -1,12 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
 
-{% block content %}
-<h4>ログイン</h4>
-<form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-    <button type="submit">ログイン</button>
-    <input type="hidden" name="next" value="{{ next }}"/>
-</form>
+<!doctype html>
+{% block title %}ログイン{% endblock  %}
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<main class="main" role="main">
 
-
+    <divc class="card-wapper">
+      <div class="card-inner card-floatingBox">
+        <div class="card">
+            <div class="card-form">
+              <form action="" method="POST" accept-charset="UTF-8">
+                {% csrf_token %}
+                <h2>ログイン</h2>
+                <label for="id_username" class="card-label">ユーザー名</label>
+                <div class="card-input">{{ form.username|add_class:"form-control" }}</div>
+                <label for="id_password" class="card-label">パスワード</label>
+                <div class="card-input">{{ form.password|add_class:"form-control" }}</div>
+                <p class="btn-login">
+                  <button type="submit" class="btn-primary">ログイン</button>
+                </p>
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                  {% for error in form.non_field_errors %}
+                    <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+                  {% endfor %}
+                </div>
+                {% endif %}
+                <p class="btn-create">
+                  <a class="new-create" href="{% url 'accounts:create' %}">新規登録</a>
+                </p>
+                <p class="btn-create">
+                  <a class="new-create" href="{% url 'accounts:passwordchange' %}">パスワードを忘れましたか？</a>
+                </p>
+              </form>              
+            </div>
+        </div>
+      </div>
+    </div>
+</main>
 {% endblock  %}

@@ -1,23 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
 
+<!doctype html>
 {% block title %}ユーザー登録{% endblock  %}
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<main class="main" role="main">
 
-{% block content %}
-
-    <h3>ユーザー作成</h3>
-    <tabele>
-        <tr><td>ClimberName</td><td>{{form.cleaned_data.username}}</td>
-        <td>Password</td><td>*******</td></tr>
-    </tabele>
-
-    <form action="" method="POST">
-        {% csrf_token %}
-        {% for field in form %}
-        {{field.as_hidden}}
-        {% endfor %}
-        <button type="submit">登録</button>
-        <button><a href="{% url 'login' %}"></a>キャンセル</button>
-    </form>
-
-
+    <divc class="card-wapper">
+      <div class="card-inner card-floatingBox">
+        <div class="card">
+            <div class="card-form">
+              <form action="" method="POST" accept-charset="UTF-8">
+                {% csrf_token %}
+                <h2>ユーザー登録</h2>
+                <label for="id_username" class="card-label">{{ form.username.label_tag }}</label>
+                <div class="card-input">{{ form.username|add_class:"form-control" }}</div>
+                <label for="id_password" class="card-label">{{ form.email.label_tag }}</label>
+                <div class="card-input">{{ form.email|add_class:"form-control" }}</div>
+                <label for="id_password" class="card-label">{{ form.password1.label_tag }}</label>
+                <div class="card-input">{{ form.password1|add_class:"form-control" }}</div>
+                <label for="id_password" class="card-label">{{ form.password2.label_tag }}</label>
+                <div class="card-input">{{ form.password2|add_class:"form-control" }}</div>
+                <p class="btn-login">
+                  <button type="submit" class="btn-primary">新規作成</button>
+                </p>
+              </form>              
+            </div>
+        </div>
+      </div>
+    </div>
+</main>
 {% endblock  %}
